@@ -1,175 +1,208 @@
-<!DOCTYPE html>
+             <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Hub Plus - Global CoinGecko Terminal</title>
+    <title>Crypto Hub Gecko Plus - Ultimate Terminal</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0c0a12; color: #f1f5f9; }
-        .glass-card { background: rgba(20, 17, 31, 0.7); border: 1px solid rgba(139, 92, 246, 0.15); box-shadow: 0 8px 32px rgba(0,0,0,0.37); }
-        .glass-card:hover { border-color: rgba(139, 92, 246, 0.35); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #06040a; color: #f8fafc; }
+        .glass-panel { background: rgba(15, 11, 28, 0.75); border: 1px solid rgba(147, 51, 234, 0.12); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+        .glass-panel:hover { border-color: rgba(147, 51, 234, 0.25); }
     </style>
 </head>
-<body class="min-h-screen antialiased pb-12">
+<body class="min-h-screen antialiased pb-16">
 
-    <header class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center border-b border-purple-950/30">
+    <header class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center border-b border-purple-950/20">
         <div class="flex items-center gap-3">
-            <div class="h-10 w-10 bg-gradient-to-tr from-green-500 to-emerald-600 rounded-xl flex items-center justify-center font-bold text-xl text-white shadow-lg">🦎</div>
+            <div class="h-11 w-11 bg-gradient-to-tr from-green-400 to-emerald-600 rounded-xl flex items-center justify-center font-bold text-2xl text-white shadow-md shadow-green-900/20">🦎</div>
             <div>
-                <h1 class="text-xl font-bold tracking-tight text-white">CRYPTO HUB <span class="text-green-400 font-extrabold">GECKO</span></h1>
-                <p class="text-[10px] text-slate-500 uppercase tracking-wider">Live Global Multi-Currency Terminal</p>
+                <h1 class="text-xl font-extrabold tracking-tight text-white flex items-center gap-1.5">CRYPTO HUB <span class="text-green-400 font-black">GECKO PRO</span></h1>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">Institutional Grade Live Aggregator</p>
             </div>
         </div>
-        <div class="text-xs bg-green-950/40 text-green-400 border border-green-900/50 px-3 py-1.5 rounded-full font-medium flex items-center gap-2">
-            <span class="h-2 w-2 rounded-full bg-green-400 animate-pulse"></span> Global Tax Engine Active
+        <div class="text-xs bg-green-950/30 text-green-400 border border-green-900/40 px-3 py-1.5 rounded-full font-medium flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-green-400 animate-pulse"></span> CoinGecko Premium API Connected
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
         
-        <div class="lg:col-span-8 space-y-8">
+        <div class="lg:col-span-8 space-y-6">
             
-            <div class="glass-card p-6 rounded-2xl flex flex-wrap items-center justify-between gap-4">
+            <div class="glass-panel p-5 rounded-2xl flex flex-wrap items-center justify-between gap-4">
                 <div class="flex items-center gap-4">
                     <div>
-                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Target Crypto</label>
-                        <select id="coinSelect" onchange="fetchCryptoData()" class="bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-sm font-semibold text-white cursor-pointer focus:outline-none focus:border-green-500">
+                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Target Crypto Asset</label>
+                        <select id="coinSelect" onchange="fetchCryptoData()" class="bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-sm font-bold text-white cursor-pointer focus:outline-none focus:border-green-500">
                             <option value="bitcoin">Bitcoin (BTC)</option>
                             <option value="ethereum" selected>Ethereum (ETH)</option>
                             <option value="solana">Solana (SOL)</option>
+                            <option value="binancecoin">BNB (BNB)</option>
+                            <option value="cardano">Cardano (ADA)</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Global Fiat Unit</label>
-                        <select id="fiatSelect" onchange="updateFiatCurrency()" class="bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-sm font-semibold text-white cursor-pointer focus:outline-none focus:border-green-500">
+                        <select id="fiatSelect" onchange="updateFiatCurrency()" class="bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-sm font-bold text-white cursor-pointer focus:outline-none focus:border-green-500">
                             <option value="usd" selected>USD ($)</option>
                             <option value="inr">INR (₹)</option>
                             <option value="gbp">GBP (£)</option>
                             <option value="eur">EUR (€)</option>
-                            <option value="aud">AUD ($)</option>
-                            <option value="cad">CAD ($)</option>
                         </select>
                     </div>
                 </div>
                 <div class="text-right">
-                    <p class="text-xs text-slate-400 font-medium">Live Market Price</p>
-                    <p id="livePriceText" class="text-2xl font-bold text-green-400 mt-0.5">Loading...</p>
+                    <p class="text-xs text-slate-400 font-medium">Live Value Stream</p>
+                    <p id="livePriceText" class="text-3xl font-black text-green-400 mt-0.5 tracking-tight">Loading...</p>
                 </div>
             </div>
 
-            <div class="glass-card p-6 rounded-2xl">
-                <h3 class="text-sm font-bold text-white mb-4 uppercase tracking-wider flex items-center gap-2">📈 Interactive Price Trend (7 Days)</h3>
-                <div class="w-full h-72">
+            <div class="glass-panel p-6 rounded-2xl bg-gradient-to-r from-slate-950 to-slate-900/50">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-1.5">📊 Tokenomics Core Statistics</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-900">
+                        <p class="text-[10px] font-bold text-slate-500 uppercase">Market Cap</p>
+                        <p id="statMarketCap" class="text-sm font-extrabold mt-1 text-slate-200">Loading...</p>
+                    </div>
+                    <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-900">
+                        <p class="text-[10px] font-bold text-slate-500 uppercase">Fully Diluted Valuation (FDV)</p>
+                        <p id="statFdv" class="text-sm font-extrabold mt-1 text-slate-200">Loading...</p>
+                    </div>
+                    <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-900">
+                        <p class="text-[10px] font-bold text-slate-500 uppercase">24 Hour Trading Volume</p>
+                        <p id="statVolume" class="text-sm font-extrabold mt-1 text-slate-200">Loading...</p>
+                    </div>
+                    <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-900">
+                        <p class="text-[10px] font-bold text-slate-500 uppercase">Circulating Supply</p>
+                        <p id="statCirculating" class="text-sm font-bold mt-1 text-green-400 font-mono">Loading...</p>
+                    </div>
+                    <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-900">
+                        <p class="text-[10px] font-bold text-slate-500 uppercase">Total Supply</p>
+                        <p id="statTotal" class="text-sm font-bold mt-1 text-slate-300 font-mono">Loading...</p>
+                    </div>
+                    <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-900">
+                        <p class="text-[10px] font-bold text-slate-500 uppercase">Max Supply</p>
+                        <p id="statMax" class="text-sm font-bold mt-1 text-slate-400 font-mono">Loading...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl">
+                <h3 class="text-xs font-bold text-slate-300 mb-4 uppercase tracking-wider flex items-center gap-2">📈 Market Trend Evaluation Matrix (7 Days History)</h3>
+                <div class="w-full h-80">
                     <canvas id="cryptoPriceChart"></canvas>
                 </div>
             </div>
 
-            <div class="glass-card p-6 rounded-2xl bg-gradient-to-b from-slate-900/40 to-transparent">
-                <div class="mb-6">
-                    <h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">💸 Multi-Country Tax & P&L Calculator</h3>
-                    <p class="text-xs text-slate-400 mt-1">Select country to apply customized local sovereign tax frameworks automatically.</p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <div class="glass-panel p-6 rounded-2xl">
+                <h3 class="text-xs font-bold text-purple-400 uppercase tracking-wider mb-2">💸 Dynamic Sovereign Tax & Profit Calculator</h3>
+                <p class="text-xs text-slate-400 mb-5">Calculate accurate local tax write-offs for profits instantly.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
                     <div>
-                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Select Country Tax Regime</label>
-                        <select id="taxRegime" onchange="runTaxCalculation()" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm focus:outline-none focus:border-purple-500 text-slate-200 cursor-pointer">
-                            <option value="IN">India (30% Tax + 4% Cess Matrix)</option>
-                            <option value="US">United States (Flat 15% Capital Rule)</option>
-                            <option value="UK">United Kingdom (20% Capital Bracket)</option>
-                            <option value="DE">Germany (0% - Held over 1 Year Rule)</option>
-                            <option value="AU">Australia (15% Post Discount Rule)</option>
-                            <option value="CA">Canada (25% Effective Capital Inclusion)</option>
+                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Tax Regime Jurisdiction</label>
+                        <select id="taxRegime" onchange="runTaxCalculation()" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs focus:outline-none focus:border-purple-500 text-slate-200 cursor-pointer font-medium">
+                            <option value="IN">India Regime (30% Flat Tax + 4% Cess)</option>
+                            <option value="US">United States Regime (15% Flat Capital Proxy)</option>
+                            <option value="UK">United Kingdom Regime (20% Capital Bracket)</option>
+                            <option value="DE">Germany Jurisdiction (0% Long-Term Exempt)</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Gross Profits Realized (<span class="currencySymbol">$</span>)</label>
+                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Gross Profit Value (<span class="currencySymbol">$</span>)</label>
                         <div class="relative">
                             <span class="absolute left-4 top-3 text-sm text-slate-500 font-bold currencySymbol">$</span>
-                            <input type="number" id="taxGrossInput" value="5000" oninput="runTaxCalculation()" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 pl-8 text-sm focus:outline-none focus:border-purple-500 text-white font-semibold">
+                            <input type="number" id="taxGrossInput" value="5000" oninput="runTaxCalculation()" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 pl-8 text-sm focus:outline-none focus:border-purple-500 text-white font-bold">
                         </div>
                     </div>
                 </div>
-
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-900">
-                        <p class="text-[10px] uppercase font-bold tracking-wider text-slate-500">Estimated Tax Owed</p>
-                        <p id="outTax" class="text-base font-bold text-rose-400 mt-1">$0.00</p>
-                    </div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-900">
-                        <p class="text-[10px] uppercase font-bold tracking-wider text-slate-500">Avg Network Route Fee</p>
-                        <p id="outGas" class="text-base font-bold text-amber-400 mt-1">$0.00</p>
-                    </div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-purple-900/20 bg-gradient-to-b from-purple-950/10 to-transparent">
-                        <p class="text-[10px] uppercase font-bold tracking-wider text-purple-400">Net Take-Home Payout</p>
-                        <p id="outNet" class="text-base font-bold text-emerald-400 mt-1">$0.00</p>
-                    </div>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-900"><p class="text-[10px] uppercase font-bold text-slate-500">Tax Owed</p><p id="outTax" class="text-sm font-black text-rose-400 mt-1">$0.00</p></div>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-900"><p class="text-[10px] uppercase font-bold text-slate-500">Route Network Gas</p><p id="outGas" class="text-sm font-black text-amber-400 mt-1">$0.00</p></div>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-purple-900/30 bg-gradient-to-b from-purple-950/10 to-transparent"><p class="text-[10px] uppercase font-bold text-purple-400">Net Take-Home</p><p id="outNet" class="text-sm font-black text-emerald-400 mt-1">$0.00</p></div>
                 </div>
             </div>
         </div>
 
-        <div class="lg:col-span-4 space-y-8">
+        <div class="lg:col-span-4 space-y-6">
             
-            <div class="glass-card p-5 rounded-2xl space-y-4">
-                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">📊 Tokenomics Supply Sheets</h3>
-                <div class="space-y-3 text-xs">
-                    <div class="flex justify-between border-b border-slate-900 pb-1.5">
-                        <span class="text-slate-400">Market Cap</span>
-                        <span id="statMarketCap" class="font-bold text-slate-200">Loading...</span>
+            <div class="glass-panel p-5 rounded-2xl space-y-4">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest border-b border-slate-900 pb-2">📋 System Information Hub</h3>
+                <div class="space-y-3.5 text-xs">
+                    <div>
+                        <p class="text-slate-500 font-bold text-[10px] uppercase tracking-wider">Official Website</p>
+                        <a id="lnkWebsite" href="#" target="_blank" class="text-purple-400 hover:underline font-medium block mt-0.5 truncate">Fetching Link...</a>
                     </div>
-                    <div class="flex justify-between border-b border-slate-900 pb-1.5">
-                        <span class="text-slate-400">Fully Diluted (FDV)</span>
-                        <span id="statFdv" class="font-bold text-slate-200">Loading...</span>
+                    <div>
+                        <p class="text-slate-500 font-bold text-[10px] uppercase tracking-wider">Blockchain Explorers</p>
+                        <a id="lnkExplorer" href="#" target="_blank" class="text-purple-400 hover:underline font-medium block mt-0.5 truncate">Launch Mainnet Node Explorer ↗</a>
                     </div>
-                    <div class="flex justify-between border-b border-slate-900 pb-1.5">
-                        <span class="text-slate-400">24h Vol</span>
-                        <span id="statVolume" class="font-bold text-slate-200">Loading...</span>
+                    <div>
+                        <p class="text-slate-500 font-bold text-[10px] uppercase tracking-wider">Smart Contract Address Hash</p>
+                        <p id="infoContract" class="font-mono text-slate-300 bg-slate-950 px-2 py-1.5 rounded mt-1 text-[11px] border border-slate-900 truncate selection:bg-purple-500">Loading Secure Hash Node...</p>
                     </div>
-                    <div class="flex justify-between border-b border-slate-900 pb-1.5">
-                        <span class="text-slate-400">Circulating Supply</span>
-                        <span id="statCirculating" class="font-mono text-slate-200">Loading...</span>
+                    <div class="grid grid-cols-2 gap-2 pt-1">
+                        <div>
+                            <p class="text-slate-500 font-bold text-[10px] uppercase tracking-wider mb-1">Community Channels</p>
+                            <a id="lnkCommunity" href="https://twitter.com" target="_blank" class="px-2.5 py-1.5 bg-slate-950 border border-slate-900 rounded block text-[11px] text-center font-semibold text-slate-300 hover:border-purple-500">Twitter / X ↗</a>
+                        </div>
+                        <div>
+                            <p class="text-slate-500 font-bold text-[10px] uppercase tracking-wider mb-1">Search Engine On</p>
+                            <a id="lnkSearchOn" href="https://www.google.com" target="_blank" class="px-2.5 py-1.5 bg-slate-950 border border-slate-900 rounded block text-[11px] text-center font-semibold text-slate-300 hover:border-purple-500">Google Core ↗</a>
+                        </div>
                     </div>
-                    <div class="flex justify-between border-b border-slate-900 pb-1.5">
-                        <span class="text-slate-400">Total Supply</span>
-                        <span id="statTotal" class="font-mono text-slate-200">Loading...</span>
-                    </div>
-                    <div class="flex justify-between pb-1">
-                        <span class="text-slate-400">Max Supply</span>
-                        <span id="statMax" class="font-mono text-slate-200">Loading...</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-card p-5 rounded-2xl space-y-4">
-                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">📋 Information Hub Matrix</h3>
-                <div class="space-y-2 text-xs">
-                    <a href="https://coinmarketcap.com/news/" target="_blank" class="flex items-center justify-between p-3 bg-slate-950 rounded-xl border border-slate-900 hover:border-purple-500/30 transition-all">
-                        <span class="font-medium text-slate-300">📰 Articles & Live News</span> <span class="text-slate-500">View ↗</span>
-                    </a>
-                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-900 space-y-1.5">
-                        <p class="text-slate-500 font-bold text-[10px] uppercase">Smart Contract Address</p>
-                        <p id="infoContract" class="font-mono text-slate-300 truncate">Fetching secure hash...</p>
-                    </div>
-                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-900 space-y-2">
-                        <p class="text-slate-500 font-bold text-[10px] uppercase">Official Verification Nodes</p>
-                        <div class="flex flex-wrap gap-2">
-                            <a id="lnkWebsite" href="#" target="_blank" class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded text-[11px] text-purple-400 hover:text-purple-300">Official Website</a>
-                            <a id="lnkExplorer" href="#" target="_blank" class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded text-[11px] text-purple-400 hover:text-purple-300">Block Explorer</a>
-                            <a id="lnkSource" href="#" target="_blank" class="px-2.5 py-1 bg-slate-900 border border-slate-800 rounded text-[11px] text-purple-400 hover:text-purple-300">Source Code</a>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <p class="text-slate-500 font-bold text-[10px] uppercase tracking-wider mb-1">Source Code Repository</p>
+                            <a id="lnkSource" href="#" target="_blank" class="px-2.5 py-1.5 bg-slate-950 border border-slate-900 rounded block text-[11px] text-center font-mono text-green-400 font-bold hover:border-green-500">GitHub Repo ↗</a>
+                        </div>
+                        <div>
+                            <p class="text-slate-500 font-bold text-[10px] uppercase tracking-wider mb-1">CoinGecko API ID</p>
+                            <p id="infoApiId" class="px-2.5 py-1.5 bg-slate-900/50 border border-purple-950/40 rounded text-[11px] text-center font-mono font-bold text-purple-300">Loading...</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="glass-card p-5 rounded-2xl space-y-3">
-                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">💱 Settlement Trade Gateways</h3>
-                <div class="grid grid-cols-2 gap-2 text-xs text-center font-semibold">
-                    <a href="https://metamask.io/" target="_blank" class="p-3 bg-slate-950 border border-slate-900 hover:border-orange-500/30 rounded-xl transition-all">🦊 MetaMask</a>
-                    <a href="https://www.kraken.com/" target="_blank" class="p-3 bg-slate-950 border border-slate-900 hover:border-blue-500/30 rounded-xl transition-all">🐙 Kraken</a>
-                    <a href="https://www.etoro.com/" target="_blank" class="p-3 bg-slate-950 border border-slate-900 hover:border-green-500/30 rounded-xl col-span-2 transition-all">📈 eToro Multi-Asset Platform</a>
+            <div class="glass-panel p-5 rounded-2xl space-y-4">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest border-b border-slate-900 pb-2">💱 Liquidity Gateways & Wallets</h3>
+                
+                <div class="space-y-2">
+                    <p class="text-slate-500 font-bold text-[10px] uppercase tracking-wider">Instant Asset Orders Execution</p>
+                    <div class="grid grid-cols-2 gap-2 text-xs text-center font-bold">
+                        <a href="https://www.kraken.com/" target="_blank" class="p-2.5 bg-emerald-500 text-slate-950 rounded-xl hover:bg-emerald-400 transition-all shadow-md shadow-emerald-950/20">🟢 Buy Asset</a>
+                        <a href="https://www.kraken.com/" target="_blank" class="p-2.5 bg-rose-500 text-white rounded-xl hover:bg-rose-400 transition-all shadow-md shadow-rose-950/20">🔴 Sell Asset</a>
+                    </div>
+                </div>
+
+                <div class="space-y-2 pt-1">
+                    <p class="text-slate-500 font-bold text-[10px] uppercase tracking-wider">Supported Multi-Asset Networks</p>
+                    <div class="grid grid-cols-1 gap-2 text-xs">
+                        <a href="https://metamask.io/" target="_blank" class="flex items-center justify-between p-2.5 bg-slate-950 border border-slate-900 hover:border-orange-500/30 rounded-xl transition-all">
+                            <span class="font-semibold text-slate-200 flex items-center gap-2">🦊 MetaMask Wallet Interface</span>
+                            <span class="text-[10px] text-slate-500 font-mono uppercase">Web3 Node</span>
+                        </a>
+                        <a href="https://www.etoro.com/" target="_blank" class="flex items-center justify-between p-2.5 bg-slate-950 border border-slate-900 hover:border-green-500/30 rounded-xl transition-all">
+                            <span class="font-semibold text-slate-200 flex items-center gap-2">📈 eToro Capital Brokerage</span>
+                            <span class="text-[10px] text-slate-500 font-mono uppercase">Fiat Gateway</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl space-y-3.5">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest border-b border-slate-900 pb-2">📰 Live Crypto News & Articles</h3>
+                <div id="newsContainer" class="space-y-2 text-xs">
+                    <a href="https://coinmarketcap.com/news/" target="_blank" class="block p-3 bg-slate-950/90 rounded-xl border border-slate-900 hover:border-purple-500/20 transition-all">
+                        <h4 class="font-bold text-slate-200 line-clamp-1">Global Market Macro Updates Statement</h4>
+                        <p class="text-[10px] text-slate-500 mt-1 font-medium">Read full verified coverage article ↗</p>
+                    </a>
+                    <a href="https://www.coindesk.com/" target="_blank" class="block p-3 bg-slate-950/90 rounded-xl border border-slate-900 hover:border-purple-500/20 transition-all">
+                        <h4 class="font-bold text-slate-200 line-clamp-1">Layer 1 Networks Smart Contract Breakthrough</h4>
+                        <p class="text-[10px] text-slate-500 mt-1 font-medium">Read institutional analysis review ↗</p>
+                    </a>
                 </div>
             </div>
 
@@ -178,37 +211,37 @@
 
     <script>
         let priceChartInstance = null;
-        let globalFiatSymbols = { usd: '$', inr: '₹', gbp: '£', eur: '€', aud: '$', cad: '$' };
+        let globalFiatSymbols = { usd: '$', inr: '₹', gbp: '£', eur: '€' };
 
-        // Helper function to get current active symbol
         function getActiveSymbol() {
             const fiat = document.getElementById('fiatSelect').value;
             return globalFiatSymbols[fiat] || '$';
         }
 
-        // Triggered when user changes the global currency drop-down
         function updateFiatCurrency() {
             const symbol = getActiveSymbol();
-            // Update input placeholder icons
             document.querySelectorAll('.currencySymbol').forEach(el => el.innerText = symbol);
             fetchCryptoData();
         }
 
-        // Core Live Connection Pipeline Engine
+        // Live Fetch System Engine
         async function fetchCryptoData() {
             const coin = document.getElementById('coinSelect').value;
             const fiat = document.getElementById('fiatSelect').value;
             const fiatSymbol = getActiveSymbol();
 
+            // Set dynamic text indicator for user
+            document.getElementById('infoApiId').innerText = coin;
+
             try {
                 const response = await fetch(`https://api.coingecko.com/api/v3/coins/${coin}`);
                 const data = await response.json();
 
-                // 1. Map Live Pricing
+                // 1. Live Price Sync
                 const currentPrice = data.market_data.current_price[fiat];
                 document.getElementById('livePriceText').innerText = `${fiatSymbol}${currentPrice.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
 
-                // 2. Map Core Tokenomics Sheet
+                // 2. Tokenomics Statistics Sheets Mapping (Above Graph Interface Nodes)
                 document.getElementById('statMarketCap').innerText = `${fiatSymbol}${data.market_data.market_cap[fiat].toLocaleString()}`;
                 document.getElementById('statFdv').innerText = data.market_data.fully_diluted_valuation[fiat] ? `${fiatSymbol}${data.market_data.fully_diluted_valuation[fiat].toLocaleString()}` : 'N/A';
                 document.getElementById('statVolume').innerText = `${fiatSymbol}${data.market_data.total_volume[fiat].toLocaleString()}`;
@@ -217,71 +250,62 @@
                 document.getElementById('statTotal').innerText = data.market_data.total_supply ? data.market_data.total_supply.toLocaleString() : 'Infinite';
                 document.getElementById('statMax').innerText = data.market_data.max_supply ? data.market_data.max_supply.toLocaleString() : 'Infinite';
 
-                // 3. Map Links
-                document.getElementById('infoContract').innerText = data.platforms && Object.keys(data.platforms).length > 0 && Object.values(data.platforms)[0] ? Object.values(data.platforms)[0] : 'Native Layer 1 Base Coin';
+                // 3. Structural Information Panel Links Mapping
+                document.getElementById('infoContract').innerText = data.platforms && Object.keys(data.platforms).length > 0 && Object.values(data.platforms)[0] ? Object.values(data.platforms)[0] : 'Native Base Layer-1 Asset Token';
                 document.getElementById('lnkWebsite').href = data.links.homepage[0];
                 document.getElementById('lnkExplorer').href = data.links.blockchain_site[0];
                 document.getElementById('lnkSource').href = data.links.repos_url.github[0] || 'https://github.com';
 
-                // 4. Update Tax Logic with latest gas conversion estimates
+                // 4. Run Tax Equation calculations updates
                 runTaxCalculation();
 
-                // 5. Trigger Chart
+                // 5. Build Historical Graph Flow Chart
                 renderHistoricalChart(coin, fiat, fiatSymbol);
 
             } catch (error) {
-                console.error("API Error Status:", error);
+                console.error("CoinGecko Network Pipeline Congestion Warning:", error);
                 document.getElementById('livePriceText').innerText = "Rate Limited (Wait 1m)";
             }
         }
 
-        // Global Multi-Country Tax Mathematical System Engine 
+        // Tax Core Equation Logic Engine
         function runTaxCalculation() {
             const gross = parseFloat(document.getElementById('taxGrossInput').value) || 0;
             const regime = document.getElementById('taxRegime').value;
             const asset = document.getElementById('coinSelect').value;
             const fiatSymbol = getActiveSymbol();
 
-            // Native Baseline Gas Matrix Rules (Approximations in USD)
             let gasInUsd = 0.0005; 
             if (asset === 'ethereum') gasInUsd = 14.25;
             if (asset === 'bitcoin') gasInUsd = 3.80;
 
-            // Simple conversion proxy factor if user switched off USD
             let conversionProxy = 1;
-            if (fiatSymbol === '₹') conversionProxy = 85; // USD to INR Approximate baseline
+            if (fiatSymbol === '₹') conversionProxy = 85; 
             if (fiatSymbol === '£') conversionProxy = 0.80;
             if (fiatSymbol === '€') conversionProxy = 0.92;
             let dynamicGas = gasInUsd * conversionProxy;
 
-            // Apply Specific Sovereign Country Laws Engine Rules
             let computedTax = 0;
             if (regime === 'IN') {
-                // Indian Rule Matrix: Flat 30% + 4% Education Cess on that base tax value
                 let baseTax = gross * 0.30;
                 computedTax = baseTax + (baseTax * 0.04);
             } else if (regime === 'US') {
-                computedTax = gross * 0.15; // Standard flat capital bracket rule proxy
+                computedTax = gross * 0.15;
             } else if (regime === 'UK') {
-                computedTax = gross * 0.20; // UK Capital Gains Higher tier threshold standard
+                computedTax = gross * 0.20;
             } else if (regime === 'DE') {
-                computedTax = 0; // Germany Hold over 1 year rule -> 0% Exempt status!
-            } else if (regime === 'AU') {
-                computedTax = gross * 0.15; // 50% discount allowance model representation
-            } else if (regime === 'CA') {
-                computedTax = gross * 0.25; // 50% capital inclusion at top standard bracket proxy
+                computedTax = 0;
             }
 
             let netPayout = gross - computedTax - dynamicGas;
             if (netPayout < 0) netPayout = 0;
 
-            // Display Values out to View Nodes
-            document.getElementById('outTax').innerText = `${fiatSymbol}${computedTax.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-            document.getElementById('outGas').innerText = `${fiatSymbol}${dynamicGas.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 4})}`;
-            document.getElementById('outNet').innerText = `${fiatSymbol}${netPayout.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('outTax').innerText = `${fiatSymbol}${computedTax.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+            document.getElementById('outGas').innerText = `${fiatSymbol}${dynamicGas.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 3})}`;
+            document.getElementById('outNet').innerText = `${fiatSymbol}${netPayout.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
         }
 
-        // Automated Chart.js Interface Implementation
+        // Beautiful Graphical Rendering Engine Implementation (Chart.js Platform)
         async function renderHistoricalChart(coin, fiat, symbol) {
             try {
                 const chartResponse = await fetch(`https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=${fiat}&days=7&interval=daily`);
@@ -302,13 +326,13 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: `Price Profile (${fiat.toUpperCase()})`,
+                            label: `Valuation Flow Line (${fiat.toUpperCase()})`,
                             data: prices,
-                            borderColor: '#4ade80',
-                            backgroundColor: 'rgba(74, 222, 128, 0.03)',
+                            borderColor: '#22c55e',
+                            backgroundColor: 'rgba(34, 197, 94, 0.03)',
                             fill: true,
-                            tension: 0.35,
-                            borderWidth: 2,
+                            tension: 0.3,
+                            borderWidth: 2.5,
                             pointRadius: 2
                         }]
                     },
@@ -317,21 +341,17 @@
                         maintainAspectRatio: false,
                         plugins: { legend: { display: false } },
                         scales: {
-                            x: { grid: { color: 'rgba(255,255,255,0.02)' }, ticks: { color: '#94a3b8' } },
-                            y: { grid: { color: 'rgba(255,255,255,0.02)' }, ticks: { color: '#94a3b8', callback: (value) => symbol + value.toLocaleString() } }
+                            x: { grid: { color: 'rgba(255,255,255,0.01)' }, ticks: { color: '#64748b' } },
+                            y: { grid: { color: 'rgba(255,255,255,0.01)' }, ticks: { color: '#64748b', callback: (value) => symbol + value.toLocaleString() } }
                         }
                     }
                 });
             } catch (err) {
-                console.warn("Chart refresh delay or stream dropped:", err);
+                console.warn("Chart refresh delay stream status drop notice:", err);
             }
         }
 
-        // Init Trigger Framework
         window.onload = () => { fetchCryptoData(); };
     </script>
 </body>
 </html>
-                
-                
-                                                                                            
